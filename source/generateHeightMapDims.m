@@ -1,4 +1,4 @@
-function [heightMap]= generateHeightMapDims(dims,N,DesignParams)
+function [heightMap]= generateHeightMapDims(connPair,Params)
 %Generates points on the C-space
 %Create N, N-dimensional matrices so we can reference ie. x,y,theta value 
 %at each (i,j,k) index
@@ -7,12 +7,11 @@ function [heightMap]= generateHeightMapDims(dims,N,DesignParams)
 % even (roll,pitch,yaw)
 
 
-connPair=get3DPyramidConnector(DesignParams);
 
-offsets.translations=getHMapTranslations(dims,N);
-offsets.rotations=getHMapRotations(dims,N);
+offsets.translations=getHMapTranslations(Params.dimensions,Params.resolution);
+offsets.rotations=getHMapRotations(Params.dimensions,Params.resolution);
 
-heightMap=getHeightMap(dims,N,connPair,offsets);
+heightMap=getHeightMap(Params.dimensions,Params.resolution,connPair,offsets);
 
 end
 

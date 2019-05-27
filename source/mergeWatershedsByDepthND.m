@@ -1,6 +1,6 @@
 function new_ws = mergeWatershedsByDepthND(points,wsAssignment, tol)
 % Uses depth information to merge insufficiently deep watersheds with the
-% applicable neighbors. 
+% applicable neighbors.
 % Inputs:
 % points - z values for all points in the grid
 % wsAssignment - watershed values assignment for all points (1 for no
@@ -21,12 +21,13 @@ while checkDepths
     end
     for w=ws_ids'
         [neighbor, depth]=findWSDepthND(points,wsAssignment,w);
-        if isempty(neighbor)
-            %No neighbor, merge with background
-            disp('empty neighbor')
-            wsAssignment=mergeWS(wsAssignment,w,1);
-            checkDepths=1;
-        elseif depth<=tol
+        %         if isempty(neighbor)
+        %             %No neighbor, merge with background
+        %             disp('empty neighbor')
+        %             wsAssignment=mergeWS(wsAssignment,w,1);
+        %             checkDepths=1;
+        %         else
+        if depth<=tol
             wsAssignment=mergeWS(wsAssignment,w,neighbor);
             checkDepths=1;
             break

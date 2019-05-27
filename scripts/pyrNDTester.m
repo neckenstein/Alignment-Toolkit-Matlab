@@ -1,7 +1,9 @@
 clear all
-DesignParams.aspectRatio=1/2;
-DesignParams.rotationCenter=0;
-CompParams.resolution=10;
-CompParams.tolerance=0.01;
-CompParams.dimensions=[1 2 3 4];
-[aaTest2,onaaTest2,onaaDigits2,ndMetrics2]=pyramidWsND(DesignParams,CompParams);
+Params.aspectRatio=1/2;
+Params.rotationCenter=0;
+Params.resolution=10;
+Params.tolerance=0.01;
+Params.dimensions=[1 2 3 4 5];
+
+connPair=get3DPyramidConnector(Params);
+[aaTest2,onaaTest2,onaaDigits2,ndMetrics2]=aaByFloodND(connPair,Params);

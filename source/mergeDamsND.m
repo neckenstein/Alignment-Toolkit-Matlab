@@ -13,25 +13,13 @@ newWS=wsAssignment;
 indices=cell(1,DIMS);
 [indices{:}]=ind2sub(size(wsAssignment),find(wsAssignment==2));
 
-%Sort from low-high
-damPoints=zeros(size(indices{1},1),DIMS+1);
-for ind=1:numel(indices{1})
-    damPointInd=zeros(1,DIMS);
-    for d=1:numel(indices)
-        damPointInd(d)=indices{d}(ind);
-    end
-    damPointCell=num2cell(damPointInd);
-    damPoints(ind,:)=[damPointInd points(damPointCell{:})];
-end
-
-damPoints=sortrows(damPoints,DIMS+1);
-
+damPoints=getSortedDamPoints(indices,points,DIMS);
 
 %Loop through each
-for d_p=1:size(damPoints,1)
+for ptIndex=1:size(damPoints,1)
     %Find neighbors    
-    neighbors = findNeighborsND(damPoints(d_p,1:DIMS),size(points));
-    damPointInd=num2cell(damPoints(d_p,1:DIMS));
+    neighbors = findNeighborsND(damPoints(ptIndex,1:DIMS),size(points));
+    damPointInd=num2cell(damPoints(ptIndex,1:DIMS));
     %neighbors = neighbors(neighbors>0 & neighbors<=x_size*y_size);
     %Determine which has steepest descent
     steepest=0;
@@ -43,7 +31,7 @@ for d_p=1:size(damPoints,1)
         neighborWS(n)=wsAssignment(neighborInd{:});
         
         riseDist=points(damPointInd{:})-points(neighborInd{:});
-        runDist = sum((damPoints(d_p,1:DIMS)-neighbors(n,1:DIMS)).^2)^0.5;        
+        runDist = sum((damPoints(ptIndex,1:DIMS)-neighbors(n,1:DIMS)).^2)^0.5;        
         descent=riseDist/runDist;
         
         if descent>steepest && wsAssignment(neighborInd{:})~=2
@@ -58,3 +46,16 @@ for d_p=1:size(damPoints,1)
     %Reassign that point
     newWS(damPointInd{:})=wsDP;
 end
+
+function damPoints = getSortedDamPoints(indices,points,DIMS)
+damPoints=zeros(size(indices{1},1),DIMS+1);
+for ind=1:numel(indices{1})
+    damPointInd=zeros(1,DIMS);
+    for d=1:numel(indices)
+        damPointInd(d)=indices{d}(ind);
+    end
+    damPointCell=num2cell(damPointInd);
+    damPoints(ind,:)=[damPointInd points(damPointCell{:})];
+end
+
+damPoints=sortrows(damPoints,DIMS+1);
