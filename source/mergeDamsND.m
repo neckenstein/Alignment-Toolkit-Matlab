@@ -20,7 +20,6 @@ for ptIndex=1:size(damPoints,1)
     %Find neighbors    
     neighbors = findNeighborsND(damPoints(ptIndex,1:DIMS),size(points));
     damPointInd=num2cell(damPoints(ptIndex,1:DIMS));
-    %neighbors = neighbors(neighbors>0 & neighbors<=x_size*y_size);
     %Determine which has steepest descent
     steepest=0;
     wsDP=2;

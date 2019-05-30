@@ -3,7 +3,7 @@ function [wsArea,onAA,onaaCellsSide,neighborMetrics]=aaByFloodND(connPair,Params
 %
 % Inputs:
 % Params.dimensions - array of offset dimensions to check 
-% Should be array of any size, where x=1,y=2,roll=3,pitch=4,yaw=5
+% Should be array of up to 5 dims, where x=1,y=2,roll=3,pitch=4,yaw=5
 % ie. [1 2 3] is (x,y,theta).
 % Params.aspectRatio - Params.aspectRatio ratio height/width for the V-Face connector
 % Params.rotationCenter - distance to center of rotation, given as a # of connector widths

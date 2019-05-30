@@ -1,9 +1,11 @@
 clear all
+%Parameters can vary across multiple simulations
 Params.aspectRatio=1/2;
 Params.rotationCenter=0;
 Params.resolution=10;
 Params.tolerance=0.01;
-Params.dimensions=[1 2 3 4 5];
-
+Params.dimensions=[1 2 3];
+%Specify connector geometries (use get3DPyramidConnector as a guide)
 connPair=get3DPyramidConnector(Params);
-[aaTest2,onaaTest2,onaaDigits2,ndMetrics2]=aaByFloodND(connPair,Params);
+%Run flooding algorithm to get the AA
+[aa,onaa,onaaCell,ndMetrics]=aaByFloodND(connPair,Params);

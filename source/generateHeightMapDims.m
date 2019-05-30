@@ -6,8 +6,6 @@ function [heightMap]= generateHeightMapDims(connPair,Params)
 %Includes possible mixed dimensionalities. ie. (x,roll,pitch) or 
 % even (roll,pitch,yaw)
 
-
-
 offsets.translations=getHMapTranslations(Params.dimensions,Params.resolution);
 offsets.rotations=getHMapRotations(Params.dimensions,Params.resolution);
 
