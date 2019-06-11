@@ -27,13 +27,13 @@ heightMap(heightMap<FALLOFF_MINIMUM)=FALLOFF_MINIMUM;
 
 PlotLimits=find2DPlotLimits(watersheds,BORDER_SIZE,Offsets);
 plotOpaque3DHeightMap(watersheds,heightMap,Offsets,PlotLimits)
-saveas(figure(1),strcat('../data/discrete2dvfacefigs/',filename,'.jpg'))
+saveas(figure(1),strcat('../data/',filename,'.jpg'))
 plotTransparent3DHeightMap(watersheds,heightMap,Offsets,PlotLimits)
-saveas(figure(2),strcat('../data/discrete2dvfacefigs/',filename,'_alpha.jpg'))
+saveas(figure(2),strcat('../data/',filename,'_alpha.jpg'))
 
 %Flat image
 plot2DAA(watersheds)
-saveas(figure(3),strcat('../data/discrete2dvfacefigs/',filename,'_imagesc.jpg'))
+saveas(figure(3),strcat('../data/',filename,'_imagesc.jpg'))
 cellSize=(4*pi)/(resolution)^2;
 sumAA=findSumAA(watersheds,cellSize);
 [onAA,onAACells]=findONAA(watersheds,resolution);
