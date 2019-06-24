@@ -1,6 +1,7 @@
 function [sumAA,onAA,onAACells,mergeMetrics]=findWsVFaceDepth(resolution,DesignParams, depthTolerance)
 FALLOFF_MINIMUM=0;
 BORDER_SIZE=100;
+FILE_CHARS=24;
 
 if ~even(resolution)
    resolution=resolution-1;
@@ -24,16 +25,18 @@ watersheds=merge_dams(heightMap,watersheds);
 
 %Change super-low points so plot is more readable
 heightMap(heightMap<FALLOFF_MINIMUM)=FALLOFF_MINIMUM;
-
+currentFilepath=mfilename('fullpath');
+rootPath=currentFilepath(1:end-FILE_CHARS);
+dataFilepath=strcat(rootPath,'\data\discrete2dvfacefigs\',filename);
 PlotLimits=find2DPlotLimits(watersheds,BORDER_SIZE,Offsets);
 plotOpaque3DHeightMap(watersheds,heightMap,Offsets,PlotLimits)
-saveas(figure(1),strcat('../data/discrete2dvfacefigs/',filename,'.jpg'))
+saveas(figure(1),strcat(dataFilepath,'.jpg'))
 plotTransparent3DHeightMap(watersheds,heightMap,Offsets,PlotLimits)
-saveas(figure(2),strcat('../data/discrete2dvfacefigs/',filename,'_alpha.jpg'))
+saveas(figure(2),strcat(dataFilepath,'_alpha.jpg'))
 
 %Flat image
 plot2DAA(watersheds)
-saveas(figure(3),strcat('../data/discrete2dvfacefigs/',filename,'_imagesc.jpg'))
+saveas(figure(3),strcat(dataFilepath,'_imagesc.jpg'))
 cellSize=(4*pi)/(resolution)^2;
 sumAA=findSumAA(watersheds,cellSize);
 [onAA,onAACells]=findONAA(watersheds,resolution);
