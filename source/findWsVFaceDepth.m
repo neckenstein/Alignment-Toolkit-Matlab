@@ -37,6 +37,7 @@ saveas(figure(2),strcat(dataFilepath,'_alpha.jpg'))
 %Flat image
 plot2DAA(watersheds)
 saveas(figure(3),strcat(dataFilepath,'_imagesc.jpg'))
+
 cellSize=(4*pi)/(resolution)^2;
 sumAA=findSumAA(watersheds,cellSize);
 [onAA,onAACells]=findONAA(watersheds,resolution);
