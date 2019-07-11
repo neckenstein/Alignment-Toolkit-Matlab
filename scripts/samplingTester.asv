@@ -1,0 +1,20 @@
+resolution=30;
+depthTolerance = 1;
+Offsets=populate2DOffsets(resolution);
+
+
+Z=abs(-exp(1)*(Offsets.tMat)+4*Offsets.xMat);
+figure(1)
+surf(Offsets.xMat,Offsets.tMat,Z)
+figure(2)
+watershedInitial=flooding_solver_2d(Z,'8adj');
+surf(Offsets.xMat,Offsets.tMat,flooding_solver_2d(Z,'8adj'));
+figure(3)
+mergeMetrics=populate2DMergeMetrics(Z,watershedInitial);
+
+watersheds=merge_watersheds_by_depth(Z,watershedInitial,depthTolerance);
+
+watersheds=merge_dams(Z,watersheds);
+PlotLimits=find2DPlotLimits(watersheds,1,Offsets);
+plotOpaque3DHeightMap(watersheds,Z,Offsets,PlotLimits,DesignParams,resolution)
+

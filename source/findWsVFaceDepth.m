@@ -29,9 +29,9 @@ currentFilepath=mfilename('fullpath');
 rootPath=currentFilepath(1:end-FILE_CHARS);
 dataFilepath=strcat(rootPath,'\data\discrete2dvfacefigs\',filename);
 PlotLimits=find2DPlotLimits(watersheds,BORDER_SIZE,Offsets);
-plotOpaque3DHeightMap(watersheds,heightMap,Offsets,PlotLimits)
+plotOpaque3DHeightMap(watersheds,heightMap,Offsets,PlotLimits,DesignParams,resolution)
 saveas(figure(1),strcat(dataFilepath,'.jpg'))
-plotTransparent3DHeightMap(watersheds,heightMap,Offsets,PlotLimits)
+plotTransparent3DHeightMap(watersheds,heightMap,Offsets,PlotLimits,DesignParams,resolution)
 saveas(figure(2),strcat(dataFilepath,'_alpha.jpg'))
 
 %Flat image
