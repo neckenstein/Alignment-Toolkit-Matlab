@@ -1,14 +1,17 @@
 clear all
+close all
 resolution=30;
 range=10;
-depthTolerance = 1;
-
+depthTolerance = 5;
+%Due to peculiarities of plotting, consider x=tMat,y=xMat
 Offsets.xSet=-range:2*range/resolution:range;
 Offsets.tSet=-range:2*range/resolution:range;
 [Offsets.tMat,Offsets.xMat]=meshgrid(-range:2*range/resolution:range,-range:2*range/resolution:range);
 DesignParams.aspectRatio='Test';
 DesignParams.rotationCenter='Test';
 Z=abs(-exp(1)*(Offsets.xMat)+4*Offsets.tMat);
+%Z=Z+(abs(range.^2-(abs(Offsets.tMat)-range).^2)).^0.5;
+Z=50*Z;
 figure(1)
 surf(Offsets.tMat,Offsets.xMat,Z)
 xlabel('x')
