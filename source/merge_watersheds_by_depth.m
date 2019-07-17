@@ -21,11 +21,12 @@ while checkDepths
     end
     for w=wsIds'
         [neighbor, depth]=find_ws_depth(points,wsAssignment,w);
+        depth
         if isempty(neighbor) || neighbor==1
             %No neighbor
             disp('empty neighbor')
             %wsAssignment=mergeWatersheds(wsAssignment,[w 1]);
-            checkDepths=1;
+            %checkDepths=1;
         elseif depth<=tol
             wsAssignment=mergeWatersheds(wsAssignment,[w neighbor]);
             checkDepths=1;

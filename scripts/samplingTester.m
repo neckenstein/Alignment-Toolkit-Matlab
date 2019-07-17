@@ -1,17 +1,25 @@
 clear all
 close all
-resolution=30;
+resolution=40;
 range=10;
 depthTolerance = 5;
+angle=30;
 %Due to peculiarities of plotting, consider x=tMat,y=xMat
 Offsets.xSet=-range:2*range/resolution:range;
 Offsets.tSet=-range:2*range/resolution:range;
 [Offsets.tMat,Offsets.xMat]=meshgrid(-range:2*range/resolution:range,-range:2*range/resolution:range);
 DesignParams.aspectRatio='Test';
 DesignParams.rotationCenter='Test';
-Z=abs(-exp(1)*(Offsets.xMat)+4*Offsets.tMat);
-%Z=Z+(abs(range.^2-(abs(Offsets.tMat)-range).^2)).^0.5;
-Z=50*Z;
+Z=abs(range.^2-(abs(Offsets.tMat)-range).^2).^0.5;
+ZR=Z+imrotate(Z,90);
+Z=imrotate(ZR,angle);
+newSize=size(Z,1);
+newSizeHalved=floor(newSize/2);
+Offsets.xSet=1:newSize;
+Offsets.tSet=1:newSize;
+[Offsets.tMat,Offsets.xMat]=meshgrid(1:newSize,1:newSize);
+depthTolerance=0.05*max(Z(:));
+Z=500*Z;
 figure(1)
 surf(Offsets.tMat,Offsets.xMat,Z)
 xlabel('x')

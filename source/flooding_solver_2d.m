@@ -93,7 +93,7 @@ while size(priorityQueue,1)>0
         nWatershed=watersheds(lowPointNeighbors(n,1), lowPointNeighbors(n,2));
         %If it has a marked watershed, take a note
         if nWatershed>2
-            descent=getDescent(lowPointNeighbors(n,:),lowestPoint);            
+            descent=getDescent(lowPointNeighbors(n,:),lowestPoint);
             neighborWatersheds=[neighborWatersheds;descent nWatershed];
         end
         %if it's not marked and HIGHER than this point it should be added to priority queue
