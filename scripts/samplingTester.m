@@ -7,7 +7,6 @@ clear all
 close all
 resolution=100;
 range=10;
-depthTolerance = 5;
 angle=35;
 %Due to peculiarities of plotting, consider x=tMat,y=xMat
 Offsets.xSet=-range:2*range/resolution:range;
@@ -23,13 +22,14 @@ newSizeHalved=floor(newSize/2);
 Offsets.xSet=1:newSize;
 Offsets.tSet=1:newSize;
 [Offsets.tMat,Offsets.xMat]=meshgrid(1:newSize,1:newSize);
-depthTolerance=0.05*max(Z(:));
+depthTolerance=0.1*(max(Z(:))-min(Z(:)));
 %Z=500*Z;
 figure()
 surf(Offsets.tMat,Offsets.xMat,Z)
 xlabel('x')
 ylabel('y')
 watershedInitial=watershed(Z);
+watershedInitial=watershedInitial+2;
 PlotLimits=find2DPlotLimits(watershedInitial,1,Offsets);
 plotOpaque3DHeightMap(watershedInitial,Z,Offsets,PlotLimits,DesignParams,resolution)
 mergeMetrics=populate2DMergeMetrics(Z,watershedInitial);
