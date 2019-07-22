@@ -13,7 +13,7 @@ row_j=row_j(1);
 neighborhood_lowest=zeros(size(ws_assignment));
 neighborhood_lowest(row_i,row_j)=1;
 neighborhood_lowest=conv2(neighborhood_lowest,ones(3,3),'same');
-all_ws_in_neighborhood=unique(neighborhood_lowest.*ws_assignment);
+all_ws_in_neighborhood=unique(uint8(neighborhood_lowest).*ws_assignment);
 exclude_vals=[0;1;2;ws];
 all_ws_in_neighborhood(ismember(all_ws_in_neighborhood,exclude_vals))=[];
 if ~isempty(all_ws_in_neighborhood)

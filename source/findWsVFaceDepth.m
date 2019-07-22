@@ -15,7 +15,7 @@ ObstaclePolyhedra=generate2DObstaclePolyhedra(DesignParams);
 
 heightMap=generateHeightMap(Offsets,ObstaclePolyhedra);
 
-watersheds=flooding_solver_2d(heightMap,'8adj'); 
+watersheds=watershed(heightMap); 
 
 mergeMetrics=populate2DMergeMetrics(heightMap,watersheds);
 
