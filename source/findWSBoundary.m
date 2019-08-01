@@ -7,7 +7,7 @@ end
 function [dams]=getExpandedDamPoints(wsAssignment,ws)
 inWatershed = wsAssignment==ws;
 %Expand ws outward one space
-wsExpanded = wsAssignment.*uint8(conv2(double(inWatershed), ones(3,3), 'same')>0);
+wsExpanded = uint8(wsAssignment).*uint8(conv2(double(inWatershed), ones(3,3), 'same')>0);
 dams = wsExpanded==2;
 end
 

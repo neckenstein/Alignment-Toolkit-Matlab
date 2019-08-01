@@ -5,16 +5,15 @@
 
 clear all
 close all
-resolutions = [100];
-depthTolFactors = [0.0001 0.001 0.01 0.1 0.2 0.4 0.5];
-heightFactors = [1];
+resolutions = [20:2:200];
+depthTolFactors = [0.1:0.01:0.5];
 angle =35;
-sumAA=zeros(numel(resolutions),numel(heightFactors),numel(depthTolFactors));
+sumAA=zeros(numel(resolutions),numel(depthTolFactors));
 for i=1:numel(resolutions)
-    for j=1:numel(heightFactors)
-        for k=1:numel(depthTolFactors)
-        sumAA(i,j,k)=samplingTester(resolutions(i),heightFactors(j),depthTolFactors(k),angle);
-        end
+    for k=1:numel(depthTolFactors)
+        sumAA(i,k)=samplingTester(resolutions(i),1,depthTolFactors(k),angle);
+        loss = (0.25777280103 - sumAA).^2;
+        rmsLoss=mean(loss);
     end
 end
-%Correct sumAA is 5185, 
+%Correct sumAA is 0.25777280103
