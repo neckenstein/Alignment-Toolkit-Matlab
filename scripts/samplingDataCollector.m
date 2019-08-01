@@ -5,8 +5,8 @@
 
 clear all
 close all
-resolutions = [20:2:200];
-depthTolFactors = [0.1:0.01:0.5];
+resolutions = 20:2:200;
+depthTolFactors = 0.1:0.01:0.5;
 angle =35;
 sumAA=zeros(numel(resolutions),numel(depthTolFactors));
 for i=1:numel(resolutions)
