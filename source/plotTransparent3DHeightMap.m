@@ -1,4 +1,4 @@
-function []=plotTransparent3DHeightMap(watersheds,heightMap,OffsetMats,PlotLimits)
+function []=plotTransparent3DHeightMap(watersheds,heightMap,OffsetMats,PlotLimits, Params, resolution)
 figure(2)
 alphaData=0.5*ones(size(watersheds));
 tMatTrimmed=OffsetMats.tMat(PlotLimits.iMin:PlotLimits.iMax,PlotLimits.jMin:PlotLimits.jMax);
@@ -11,4 +11,6 @@ xlabel('theta')
 ylabel('x')
 zlabel('y')
 axis equal
+titleString=strcat('Discrete Method AA:V-Face AR:',Params.aspectRatio,' COR:',Params.rotationCenter,' Res:',resolution,' - 3D');
+title(titleString)
 end
