@@ -1,3 +1,5 @@
+clear all
+close all
 DesignParams.aspectRatio=4;
 DesignParams.rotationCenter=0;
-[aaTest,onaaTest,onaaDigits,ndMetrics]=findWsVFaceDepth(100,DesignParams,0.1);
+[aaTest,onaaTest,onaaDigits,ndMetrics]=findWsVFaceDepth(80,DesignParams,0.36);

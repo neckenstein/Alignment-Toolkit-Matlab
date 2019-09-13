@@ -1,4 +1,4 @@
-function [sumAA,onAA,onAACells,mergeMetrics]=findWsVFaceDepth(resolution,DesignParams, depthToleranceFactor)
+function [sumAA,onAA,onAACells,mergeMetrics]=findWsVFaceDepth(resolution,DesignParams, depthTolerance)
 FALLOFF_MINIMUM=0;
 BORDER_SIZE=100;
 FILE_CHARS=24;
@@ -14,7 +14,7 @@ ObstaclePolyhedra=generate2DObstaclePolyhedra(DesignParams);
 
 heightMap=generateHeightMap(Offsets,ObstaclePolyhedra);
 
-depthTolerance=findDepthTolerance(depthToleranceFactor,heightMap);
+%depthTolerance=findDepthTolerance(depthToleranceFactor,heightMap);
 
 watersheds=watershed(heightMap)+2;
 

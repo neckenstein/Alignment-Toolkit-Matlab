@@ -1,5 +1,5 @@
 function mergedWatersheds = mergeWatersheds(wsAssignment,watersheds)
-newWs = min(watersheds);
+newWs = watersheds(end);
 %Find each boundary
 boundShared = findSharedWSBoundary(wsAssignment, watersheds);
 newIndex = (wsAssignment==watersheds(1) | wsAssignment==watersheds(2)) | boundShared;

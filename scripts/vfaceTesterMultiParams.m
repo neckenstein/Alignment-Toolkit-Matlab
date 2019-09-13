@@ -12,6 +12,6 @@ for i=1:numel(aspectRatios)
     for j=1:numel(rotationCenters)
         DesignParams.aspectRatio=aspectRatios(i);
         DesignParams.rotationCenter=rotationCenters(j);
-        [aaResult(i,j),onaaTest(i,j),onaaDigits(i,j),ndMetrics{i,j}]=findWsVFaceDepth(100,DesignParams,0.36);
+        [aaResult(i,j),onaaResult(i,j),onaaDigits(i,j),ndMetrics{i,j}]=findWsVFaceDepth(100,DesignParams,0.36);
     end
 end
