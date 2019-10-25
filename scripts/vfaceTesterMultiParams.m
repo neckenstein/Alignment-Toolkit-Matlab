@@ -1,7 +1,7 @@
 close all
 
 RESOLUTION=100;
-DEPTH_TOL_FACTOR=0.36;
+DEPTH_TOL_FACTOR=0.1;
 aspectRatios = [1/4 1/2  1 2 4];
 rotationCenters = [-1 -1/2 0 1/2 1];
 aaResult=zeros(numel(aspectRatios),numel(rotationCenters));

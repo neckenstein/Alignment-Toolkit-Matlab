@@ -1,5 +1,5 @@
 function []=plotOpaque3DHeightMap(watersheds,heightMap,Offsets,PlotLimits,Params,resolution)
-figure()
+figure(1)
 surfacePlot=surf(Offsets.tMat(PlotLimits.iMin:PlotLimits.iMax,PlotLimits.jMin:PlotLimits.jMax),Offsets.xMat(PlotLimits.iMin:PlotLimits.iMax,PlotLimits.jMin:PlotLimits.jMax),heightMap(PlotLimits.iMin:PlotLimits.iMax,PlotLimits.jMin:PlotLimits.jMax)+0.75,watersheds(PlotLimits.iMin:PlotLimits.iMax,PlotLimits.jMin:PlotLimits.jMax));
 surfacePlot.EdgeAlpha=0.3;
 xlabel('theta')
