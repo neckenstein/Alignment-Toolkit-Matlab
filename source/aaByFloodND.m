@@ -30,15 +30,15 @@ cellSize = calculateCellSize(Params);
 
 points=generateHeightMapDims(connPair,Params);
 
-wsUnmerged=floodingSolverND(points);
-
+%wsUnmerged=floodingSolverND(points);
+wsUnmerged=double(watershed(points)+2);
 neighborMetrics=populateMergeMetrics(points,wsUnmerged);
 
 centerWS=Params.resolution/2+1;
 centerInd=num2cell(centerWS*ones(1,numel(Params.dimensions)));
 
 wsMerged=mergeWatershedsByDepthND(points,wsUnmerged,Params.tolerance); 
-wsMerged=mergeDamsND(points,wsMerged); 
+%wsMerged=mergeDamsND(points,wsMerged); 
 
 wsOfInterest=wsMerged(centerInd{:});
 

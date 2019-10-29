@@ -1,6 +1,7 @@
 clear all
-DesignParams.aspectRatio=1/4;
-DesignParams.rotationCenter=-1/2;
+close all
+DesignParams.aspectRatio=1;
+DesignParams.rotationCenter=0;
 maxSteps=15;
 resolutions=zeros(1,maxSteps);
 aas=zeros(1,maxSteps);

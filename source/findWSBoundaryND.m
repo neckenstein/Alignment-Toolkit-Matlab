@@ -19,6 +19,6 @@ edgesInWS=edges & isInWS;
 damsNeighbors = convn(double(damsPoints),ones(convSize{:}),'same')>0;
 edgesNoDamNeighbor= edgesInWS & ~damsNeighbors;
 
-boundary = edgesNoDamNeighbor | damsPoints;
-
+%boundary = edgesNoDamNeighbor | damsPoints;
+boundary = damsPoints;
 end
