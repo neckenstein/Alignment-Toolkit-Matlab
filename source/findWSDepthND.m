@@ -24,7 +24,7 @@ end
 %Find which watershed neighbors along this boundary
 neighborhoodLowest=zeros(size(wsAssignment));
 neighborhoodLowest(lowestBoundInd{:})=1;
-neighborhoodLowest=convn(neighborhoodLowest,ones(convSize{:}),'same');
+neighborhoodLowest=uint8(convn(neighborhoodLowest,ones(convSize{:}),'same'));
 allWSInNeighborhood=unique(neighborhoodLowest.*wsAssignment);
 
 allWSInNeighborhood(ismember(allWSInNeighborhood,EXCLUDE_VALS))=[];
